@@ -1,0 +1,42 @@
+image: ruby:2.6.2-slim
+
+variables:
+  BUNDLE_CACHE: "vendor/bundle/"
+  RAILS_ENV: "test"
+
+cache:
+  untracked: true
+  key: "$CI_BUILD_NAME"
+  paths:
+    # variables.BUNDLE_CACHEと同じものを指定する
+    - vendor/bundle/
+
+services:
+  - mysql:5.7
+  # - redis:2.8
+  # - memcached:1.4
+
+before_script:
+  - ./gitlab-ci/setup.sh
+
+stages:
+  - test
+  # - deploy
+
+rspec:
+  stage: test
+  script:
+    - ./gitlab-ci/rspec.sh
+
+rubocop:
+  stage: test
+  script:
+    - ./gitlab-ci/rubocop.sh
+
+# NOTE:デプロイは時間を見つけてやりたい
+# deploy_staging:
+#   stage: deploy
+#   script:
+#     - ./gitlab-ci/deploy.sh staging
+#   only:
+#     - develop
