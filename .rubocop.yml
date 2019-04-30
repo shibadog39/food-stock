@@ -1,0 +1,75 @@
+require:
+  - rubocop-performance
+
+AllCops:
+  Exclude:
+    # 自動生成されるファイルや外部ライブラリは制御できないのでチェック対象外
+    - bin/**/*
+    - config/**/*
+    - db/schema.rb
+    - db/migrate/*
+    - lib/mail/send_grid.rb
+    - node_modules/**/*
+    - vendor/**/*
+    # seedファイルやテストデータ用のコードは横に長くなりがちなのでチェック対象外
+    - 'db/fixtures/**/*'
+    - 'spec/factories/*'
+  TargetRubyVersion: 2.6
+
+# Checks that ABC (Assignment Branch Condition) size is not higher than the configured maximum
+Metrics/AbcSize:
+  # デフォルトの15は厳しすぎるので緩めている。25は守りたい
+  Max: 25
+
+# Avoid long blocks with many lines
+Metrics/BlockLength:
+  # ファイル丸ごとブロックに入りそうなファイルは行数制限から外す
+  Exclude:
+    - config/environments/*.rb
+    - config/routes.rb
+    - spec/factories/*
+    - spec/**/*_spec.rb
+    - lib/capistrano/tasks/*
+    - spec/supports/token_authorization.rb
+
+Metrics/LineLength:
+  Max: 120
+  Exclude:
+    - lib/capistrano/tasks/*
+
+# Avoid methods longer than some maximum lines of code
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/ModuleLength:
+  Max: 130
+
+Metrics/ParameterLists:
+  CountKeywordArgs: false
+
+Naming/UncommunicativeMethodParamName:
+  AllowedNames:
+    - 'io'
+    - 'id'
+    - 'to'
+    - 'by'
+    - 'on'
+    - 'in'
+    - 'at'
+    - 'os'
+    - 'of'
+
+Style/AsciiComments:
+  Enabled: false
+
+# The `context_dependent` style checks that the last parameter
+# doesn't have braces around it, but requires braces if the
+# second to last parameter is also a hash literal.
+Style/BracesAroundHashParameters:
+  EnforcedStyle: context_dependent
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+
+Style/Documentation:
+  Enabled: false
