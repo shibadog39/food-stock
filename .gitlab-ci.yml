@@ -26,12 +26,12 @@ stages:
 rspec:
   stage: test
   script:
-    - ./gitlab-ci/rspec.sh
+    - chmod +x ./gitlab-ci/rspec.sh
 
 rubocop:
   stage: test
   script:
-    - ./gitlab-ci/rubocop.sh
+    - chmod +x ./gitlab-ci/rubocop.sh
 
 # NOTE:デプロイは時間を見つけてやりたい
 # deploy_staging:
