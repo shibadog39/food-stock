@@ -18,9 +18,9 @@ services:
   # - memcached:1.4
 
 before_script:
+  - apt-get update -qq && apt-get install -y
   - cp gitlab-ci/database.yml config/database.yml
   - gem install bundler
-  - gem install nokogiri -v '1.10.3' --source 'https://rubygems.org/'
   - bundle install --path=${BUNDLE_CACHE}
   - bundle exec rails db:create
   - bundle exec rails db:migrate:reset
