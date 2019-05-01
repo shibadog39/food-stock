@@ -1,47 +1,47 @@
-image: ruby:2.6.2-slim
+# image: ruby:2.6.2-slim
 
-variables:
-  BUNDLE_CACHE: "vendor/bundle/"
-  RAILS_ENV: "test"
-  # MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+# variables:
+#   BUNDLE_CACHE: "vendor/bundle/"
+#   RAILS_ENV: "test"
+#   # MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
 
-cache:
-  untracked: true
-  key: "$CI_BUILD_NAME"
-  paths:
-    # variables.BUNDLE_CACHEと同じものを指定する
-    - vendor/bundle/
+# cache:
+#   untracked: true
+#   key: "$CI_BUILD_NAME"
+#   paths:
+#     # variables.BUNDLE_CACHEと同じものを指定する
+#     - vendor/bundle/
 
-services:
-  # - mysql:5.7
-  # - redis:2.8
-  # - memcached:1.4
+# services:
+#   # - mysql:5.7
+#   # - redis:2.8
+#   # - memcached:1.4
 
-before_script:
-  # - cp gitlab-ci/database.yml config/database.yml
-  - gem install rubocop
-  # - bundle install --path=${BUNDLE_CACHE}
-  # - bundle exec rails db:create
-  # - bundle exec rails db:migrate:reset
+# before_script:
+#   # - cp gitlab-ci/database.yml config/database.yml
+#   - gem install rubocop
+#   # - bundle install --path=${BUNDLE_CACHE}
+#   # - bundle exec rails db:create
+#   # - bundle exec rails db:migrate:reset
 
-stages:
-  - test
-  # - deploy
+# stages:
+#   - test
+#   # - deploy
 
-# rspec:
+# # rspec:
+# #   stage: test
+# #   script:
+# #     - bundle exec rspec
+
+# rubocop:
 #   stage: test
 #   script:
-#     - bundle exec rspec
+#     - bundle exec rubocop
 
-rubocop:
-  stage: test
-  script:
-    - bundle exec rubocop
-
-# NOTE:デプロイは時間を見つけてやりたい
-# deploy_staging:
-#   stage: deploy
-#   script:
-#     - ./gitlab-ci/deploy.sh staging
-#   only:
-#     - develop
+# # NOTE:デプロイは時間を見つけてやりたい
+# # deploy_staging:
+# #   stage: deploy
+# #   script:
+# #     - ./gitlab-ci/deploy.sh staging
+# #   only:
+# #     - develop
