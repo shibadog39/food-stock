@@ -3,7 +3,7 @@ image: ruby:2.6.2-slim
 variables:
   BUNDLE_CACHE: "vendor/bundle/"
   RAILS_ENV: "test"
-  MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+  # MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
 
 cache:
   untracked: true
@@ -13,7 +13,7 @@ cache:
     - vendor/bundle/
 
 services:
-  - mysql:5.7
+  # - mysql:5.7
   # - redis:2.8
   # - memcached:1.4
 
