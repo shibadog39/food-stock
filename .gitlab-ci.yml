@@ -20,7 +20,6 @@ services:
 before_script:
   - cp gitlab-ci/database.yml config/database.yml
   - gem install bundler
-  - gem install nokogiri -v '1.10.3'
   - bundle install --path=${BUNDLE_CACHE}
   - bundle exec rails db:create
   - bundle exec rails db:migrate:reset
