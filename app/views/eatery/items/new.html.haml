@@ -1,0 +1,5 @@
+%section
+  %h1.title 商品登録
+
+  = form_with model: @item, url: eatery_items_path, local: true do |f|
+    = render 'form', f: f

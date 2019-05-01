@@ -2,21 +2,18 @@
   = render 'layouts/eatery/error_messages', errors: f.object.errors
 
 .form-group
+  = f.label :supplier_id
+  = f.collection_select(:supplier_id, Supplier.where(shop: 1), :id, :name,
+                        {}, { class: 'form-control' })
+.form-group
   = f.label :name
-  = f.text_field :name, class: 'form-control', placeholder: 'おばな生鮮食品'
+  = f.text_field :name, class: 'form-control', placeholder: 'キャベツ'
 .form-group
-  = f.label :tel
-  = f.text_field :tel, class: 'form-control', placeholder: '0123-456-789'
-.form-group
-  = f.label :fax
-  = f.text_field :fax, class: 'form-control', placeholder: '0123-456-789'
-.form-group
-  = f.label :email
-  = f.text_field :email, class: 'form-control', placeholder: '0123-456-789'
+  = f.label :category
+  = f.select :category, Item.category.options, {}, { class: 'form-control' }
 .form-group
   = f.label :lead_time
   = f.number_field :lead_time, class: 'form-control', placeholder: '2'
-
 .form-group
   = f.label :memo
   = f.text_field :memo, class: 'form-control', placeholder: 'メモ'
