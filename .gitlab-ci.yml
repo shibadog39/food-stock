@@ -17,7 +17,7 @@ services:
   # - memcached:1.4
 
 before_script:
-  - ./gitlab-ci/setup.sh
+  - chmod +x ./gitlab-ci/setup.sh
 
 stages:
   - test
