@@ -1,7 +1,7 @@
 image: ruby:2.6.2-slim
 
 variables:
-  BUNDLE_CACHE: "/usr/local/bundle/"
+  BUNDLE_CACHE: "vendor/bundle/"
   RAILS_ENV: "test"
   MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
 
@@ -10,7 +10,7 @@ cache:
   key: "$CI_BUILD_NAME"
   paths:
     # variables.BUNDLE_CACHEと同じものを指定する
-    - /usr/local/bundle/
+    - vendor/bundle/
 
 services:
   - mysql:5.7
