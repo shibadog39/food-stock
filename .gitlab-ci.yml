@@ -27,12 +27,12 @@ stages:
 rspec:
   stage: test
   script:
-    - chmod +x ./gitlab-ci/rspec.sh
+    - bundle exec rspec
 
 rubocop:
   stage: test
   script:
-    - chmod +x ./gitlab-ci/rubocop.sh
+    - bundle exec rubocop
 
 # NOTE:デプロイは時間を見つけてやりたい
 # deploy_staging:
