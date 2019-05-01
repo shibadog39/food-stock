@@ -18,21 +18,20 @@ services:
   # - memcached:1.4
 
 before_script:
-  - apt-get update -qq && apt-get install -y
-  - cp gitlab-ci/database.yml config/database.yml
-  - gem install bundler
-  - bundle install --path=${BUNDLE_CACHE}
-  - bundle exec rails db:create
-  - bundle exec rails db:migrate:reset
+  # - cp gitlab-ci/database.yml config/database.yml
+  - gem install rubocop
+  # - bundle install --path=${BUNDLE_CACHE}
+  # - bundle exec rails db:create
+  # - bundle exec rails db:migrate:reset
 
 stages:
   - test
   # - deploy
 
-rspec:
-  stage: test
-  script:
-    - bundle exec rspec
+# rspec:
+#   stage: test
+#   script:
+#     - bundle exec rspec
 
 rubocop:
   stage: test
