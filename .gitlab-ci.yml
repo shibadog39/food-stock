@@ -1,16 +1,16 @@
 image: ruby:2.6.2-slim
 
 variables:
-  BUNDLE_CACHE: "vendor/bundle/"
+  # BUNDLE_CACHE: "vendor/bundle/"
   RAILS_ENV: "test"
   MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
 
-cache:
-  untracked: true
-  key: "$CI_BUILD_NAME"
-  paths:
-    # variables.BUNDLE_CACHEと同じものを指定する
-    - vendor/bundle/
+# cache:
+#   untracked: true
+#   key: "$CI_BUILD_NAME"
+#   paths:
+#     # variables.BUNDLE_CACHEと同じものを指定する
+#     - vendor/bundle/
 
 services:
   - mysql:5.7
