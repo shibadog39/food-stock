@@ -1,5 +1,5 @@
 #!/bin/bash -xe
 
-bundle exec rubocop --rails
+bundle exec rubocop
 
 exit 0
