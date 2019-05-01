@@ -1,0 +1,26 @@
+%section
+  %h1.title 仕入先一覧
+
+  = link_to '新規作成', new_eatery_supplier_path
+  %table.table.is-bordered.is-hoverable
+    %thead
+      %tr
+        %th ID
+        %th 仕入先名
+        %th 電話番号
+        %th FAX
+        %th メールアドレス
+        %th リードタイム
+        %th メモ
+        %th
+        %th
+    %tbody
+      - @suppliers.each do |supplier|
+        %tr
+          %td= supplier.id
+          %td= supplier.name
+          %td= supplier.tel
+          %td= supplier.fax
+          %td= supplier.email
+          %td= supplier.lead_time
+          %td= link_to '編集', edit_eatery_supplier_path(supplier)

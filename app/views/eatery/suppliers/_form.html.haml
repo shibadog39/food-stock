@@ -1,0 +1,23 @@
+- if f.object.errors.any?
+  = render 'layouts/eatery/error_messages', errors: f.object.errors
+
+.field
+  = f.label :name
+  = f.text_field :name, class: 'input', placeholder: 'おばな生鮮食品'
+.field
+  = f.label :tel
+  = f.text_field :tel, class: 'input', placeholder: '0123-456-789'
+.field
+  = f.label :fax
+  = f.text_field :fax, class: 'input', placeholder: '0123-456-789'
+.field
+  = f.label :email
+  = f.text_field :email, class: 'input', placeholder: '0123-456-789'
+.field
+  = f.label :lead_time
+  = f.number_field :lead_time, class: 'input', placeholder: '2'
+
+.field
+  = f.label :memo
+  = f.text_field :memo, class: 'input', placeholder: 'メモ'
+= f.button '保存', type: 'submit'
