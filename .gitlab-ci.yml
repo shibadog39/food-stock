@@ -5,7 +5,7 @@ variables:
   RAILS_ENV: "test"
   MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
 
-cache:ß
+cache:
   untracked: true
   key: "$CI_BUILD_NAME"
   paths:
