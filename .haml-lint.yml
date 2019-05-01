@@ -1,0 +1,11 @@
+linters:
+  # id名のフォーマット
+  # https://github.com/brigade/haml-lint/blob/master/lib/haml_lint/linter/README.md#idnames
+  IdNames:
+    enabled: false
+
+  LineLength:
+    max: 140
+
+  ViewLength:
+    enabled: false
