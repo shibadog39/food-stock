@@ -1,24 +1,35 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## docker構築
+```
+# コンテナをビルド
+$ docker-compose build
 
-Things you may want to cover:
+# コンテナの作成＆起動（バックグラウンド）
+$ docker-compose up -d
+```
 
-* Ruby version
+## dockerコマンド
+```
+# webコンテナに入る
+docker-compose exec web bash
+→ このあとでrailsコマンドがうてる
 
-* System dependencies
+# コンテナに入らずに直接コマンドうつこともできる
+docker-compose exec web bin/rails s
 
-* Configuration
+# 立ち上がってるコンテナを一覧で見る
+なんか困ったらとりあえずwebコンテナが落ちていないか確認
+docker-compose ps
+```
 
-* Database creation
+## pushする前にすること
+CIに組み込むの断念しちまった。
+webコンテナに入ったあとで下記2つはやろう
+```
+# rubocop
+bundle exec rubocop --auto-correct
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# haml-lint
+bundle exec haml-lint app/views/
+```
