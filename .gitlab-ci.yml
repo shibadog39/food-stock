@@ -3,6 +3,7 @@ image: ruby:2.6.2-slim
 variables:
   BUNDLE_CACHE: "vendor/bundle/"
   RAILS_ENV: "test"
+  MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
 
 cache:
   untracked: true

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash -xe
 
 sudo cp gitlab-ci/database.yml config/database.yml
 
