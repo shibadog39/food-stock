@@ -1,0 +1,5 @@
+%section
+  %h1.title 仕入先登録
+
+  = form_with model: @supplier, url: eatery_suppliers_path, local: true do |f|
+    = render 'form', f: f

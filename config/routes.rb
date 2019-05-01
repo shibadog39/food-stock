@@ -1,5 +1,12 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  # 飲食店画面
+  namespace :eatery, path: '/' do
+    resources :suppliers
+  end
+
+  # 管理画面あとで作らなきゃいけない
+  namespace :admin, path: '/' do
+  end
 end
