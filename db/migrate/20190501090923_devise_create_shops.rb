@@ -3,6 +3,10 @@
 class DeviseCreateShops < ActiveRecord::Migration[5.2]
   def change
     create_table :shops do |t|
+      t.string :name, null: false, limit: 255
+      t.string :tel
+      t.string :address
+      t.text :memo
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""

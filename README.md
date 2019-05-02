@@ -1,5 +1,16 @@
 # README
 
+## pushする前にすること
+CIに組み込むの断念しちまった。
+webコンテナに入ったあとで下記2つはやろう
+```
+# rubocop
+bundle exec rubocop --auto-correct
+
+# haml-lint
+bundle exec haml-lint app/views/
+```
+
 ## docker構築
 ```
 # コンテナをビルド
@@ -23,13 +34,11 @@ docker-compose exec web bin/rails s
 docker-compose ps
 ```
 
-## pushする前にすること
-CIに組み込むの断念しちまった。
-webコンテナに入ったあとで下記2つはやろう
+## 便利系
 ```
-# rubocop
-bundle exec rubocop --auto-correct
+seedデータ作成
+bin/rails db:seed_fu
 
-# haml-lint
-bundle exec haml-lint app/views/
+データリセット
+bin/rails db:migrate:reset db:seed_fu
 ```

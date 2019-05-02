@@ -1,0 +1,24 @@
+%section
+  %h1.title 商品一覧
+
+  = link_to '新規作成', new_eatery_item_path
+  %table.table.is-bordered.is-hoverable
+    %thead
+      %tr
+        %th ID
+        %th 商品名
+        %th 仕入先
+        %th タイプ
+        %th リードタイム
+        %th メモ
+        %th
+    %tbody
+      - @items.each do |item|
+        %tr
+          %td= item.id
+          %td= item.name
+          %td= item.supplier.name
+          %td= item.category
+          %td= item.lead_time
+          %td= item.memo
+          %td= link_to '編集', edit_eatery_item_path(item)
