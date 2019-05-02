@@ -2,5 +2,17 @@
   .navbar-brand
     = link_to '飲食店画面', '#', class: 'navbar-brand'
   %ul.navbar-nav.mr-auto
-    -# %li.nav-item= link_to 'example', '#', class: 'nav-link'
-  = button_to 'Logout', '#', method: :delete, class: 'btn btn-outline-success'
+  
+  - unless shop_signed_in?
+    %ul.navbar-nav.mr-auto
+      %li.nav-item.mr-3
+        = link_to ' サインアップ', new_shop_registration_path, class: "fas fa-user-plus"
+      %li.nav-item.mr-3
+        = link_to ' ログイン', new_shop_session_path, class: "fas fa-sign-in-alt"
+          
+  - if shop_signed_in?
+    %ul.navbar-nav
+      %li.nav-item.mr-3.text-right
+        = link_to ' ログアウト', destroy_shop_session_path, method: :delete, class: "fas fa-sign-out-alt"
+      %li.nav-item.mr-3.text-right
+        = link_to ' ' + current_shop.name, edit_shop_registration_path, class: "fas fa-user"
