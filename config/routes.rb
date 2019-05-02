@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root to: 'suppliers#new'
-  devise_for :shops
+  root to: 'eatery/suppliers#new'
+  devise_for :shops, controllers: {
+    registrations: 'shops/registrations',
+    sessions: 'shops/sessions'
+  }
   
   # 飲食店画面
   namespace :eatery, path: '/' do

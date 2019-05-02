@@ -55,6 +55,9 @@ group :development, :test do
   gem 'haml_lint', require: false
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
+  gem 'pry-byebug'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :development do
