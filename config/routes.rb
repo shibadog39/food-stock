@@ -11,6 +11,12 @@ Rails.application.routes.draw do
   namespace :eatery, path: '/' do
     resources :suppliers
     resources :items
+    get 'order_stocks/index'
+    get 'order_stocks/create'
+    get 'order_stocks/update'
+    get 'proper_stocks/index'
+    get 'proper_stocks/create'
+    get 'proper_stocks/update'
   end
 
   # 管理画面あとで作らなきゃいけない

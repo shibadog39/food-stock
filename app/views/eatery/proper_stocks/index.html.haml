@@ -1,0 +1,16 @@
+%section
+  %h1.title 最適在庫数一覧
+
+  %table.table.is-bordered.is-hoverable
+    %thead
+      %tr
+        %th 食材名
+        %th 日付グループ
+        %th 最適在庫数
+    %tbody
+      - @items.each do |item|
+        - item.proper_stocks.each do |ps|
+          %tr
+          %td= item.name
+          %td= ps.date_type
+          %td= ps.quantity
