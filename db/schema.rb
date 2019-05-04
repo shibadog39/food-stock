@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_01_114321) do
+ActiveRecord::Schema.define(version: 2019_05_03_075254) do
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "shop_id", null: false
@@ -24,6 +24,28 @@ ActiveRecord::Schema.define(version: 2019_05_01_114321) do
     t.datetime "updated_at", null: false
     t.index ["shop_id"], name: "index_items_on_shop_id"
     t.index ["supplier_id"], name: "index_items_on_supplier_id"
+  end
+
+  create_table "order_stocks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "shop_id"
+    t.bigint "item_id"
+    t.integer "quantity"
+    t.datetime "delivery_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_order_stocks_on_item_id"
+    t.index ["shop_id"], name: "index_order_stocks_on_shop_id"
+  end
+
+  create_table "proper_stocks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "shop_id"
+    t.bigint "item_id"
+    t.integer "date_type"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_proper_stocks_on_item_id"
+    t.index ["shop_id"], name: "index_proper_stocks_on_shop_id"
   end
 
   create_table "shops", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -51,4 +73,8 @@ ActiveRecord::Schema.define(version: 2019_05_01_114321) do
     t.index ["shop_id"], name: "index_suppliers_on_shop_id"
   end
 
+  add_foreign_key "order_stocks", "items"
+  add_foreign_key "order_stocks", "shops"
+  add_foreign_key "proper_stocks", "items"
+  add_foreign_key "proper_stocks", "shops"
 end
