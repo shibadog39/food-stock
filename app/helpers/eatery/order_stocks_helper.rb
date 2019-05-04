@@ -1,0 +1,2 @@
+module Eatery::OrderStocksHelper
+end

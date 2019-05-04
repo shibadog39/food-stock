@@ -1,0 +1,22 @@
+%section
+  %h1.title 発注数一覧画面
+
+  %table.table.is-bordered.is-hoverable
+    %thead
+      %tr
+        %th 食材名
+        %th 在庫数
+        %th 未着在庫数
+        %th 最適在庫数
+        %th 発注数
+    %tbody
+      - @items.each do |item|
+        %tr
+          %td= supplier.id
+          %td= supplier.name
+          %td= supplier.tel
+          %td= supplier.fax
+          %td= supplier.email
+          %td= supplier.lead_time
+          %td= supplier.memo
+          %td= link_to '編集', edit_eatery_supplier_path(supplier)

@@ -4,7 +4,7 @@ class Eatery::SuppliersController < Eatery::ApplicationController
   def index
     # TODO: current_shop.suppliersみたいにする
     # TODO: paginationを追加する
-    @suppliers = Supplier.all
+    @suppliers = current_shop.suppliers.all
   end
 
   def new
@@ -13,7 +13,7 @@ class Eatery::SuppliersController < Eatery::ApplicationController
 
   def create
     # TODO: current_shop.suppliers.new()みたいにする
-    @supplier = Supplier.new(supplier_params)
+    @supplier = current_shop.suppliers.build(supplier_params)
 
     if @supplier.save
       redirect_to eatery_suppliers_path, notice: '登録しました'

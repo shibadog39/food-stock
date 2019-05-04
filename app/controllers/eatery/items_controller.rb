@@ -13,7 +13,8 @@ class Eatery::ItemsController < Eatery::ApplicationController
 
   def create
     # TODO: current_shop.suppliers.new()みたいにする
-    @item = Item.new(item_params)
+    # テストのため一旦決めうち
+    @item = current_shop.suppliers[0].items.build(item_params)
     if @item.save
       redirect_to eatery_items_path, notice: '登録しました'
     else

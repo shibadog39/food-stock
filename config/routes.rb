@@ -12,6 +12,12 @@ Rails.application.routes.draw do
     resources :suppliers
     resources :items
     resources :actual_stocks, only: %i[index update]
+    get 'order_stocks/index'
+    get 'order_stocks/create'
+    get 'order_stocks/update'
+    get 'proper_stocks/index'
+    get 'proper_stocks/create'
+    get 'proper_stocks/update'
   end
 
   # 管理画面あとで作らなきゃいけない
