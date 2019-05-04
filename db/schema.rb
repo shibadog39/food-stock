@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_01_114321) do
+ActiveRecord::Schema.define(version: 2019_05_02_060717) do
+
+  create_table "actual_stocks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.integer "quantity", default: 0
+    t.date "counted_at", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id", "counted_at"], name: "index_actual_stocks_on_item_id_and_counted_at", unique: true
+    t.index ["item_id"], name: "index_actual_stocks_on_item_id"
+  end
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "shop_id", null: false
