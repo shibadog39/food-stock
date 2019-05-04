@@ -1,6 +1,5 @@
 %section
   %h1.title 最適在庫数一覧
-
   %table.table.is-bordered.is-hoverable
     %thead
       %tr
@@ -13,4 +12,5 @@
           %tr
           %td= item.name
           %td= ps.date_type
-          %td= ps.quantity
+          %td
+            %input.form-control= ps.quantity 
