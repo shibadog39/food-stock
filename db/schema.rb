@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2019_05_03_075254) do
 
   create_table "actual_stocks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "item_id", null: false
-    t.integer "quantity", default: 0
+    t.integer "quantity"
     t.date "counted_at", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

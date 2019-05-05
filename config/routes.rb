@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   namespace :eatery, path: '/' do
     resources :suppliers
     resources :items
-    resources :actual_stocks, only: %i[index update]
+    resources :actual_stocks, only: %i[index] do
+      collection do
+        post :bulk_update
+      end
+    end
     get 'order_stocks/index'
     get 'order_stocks/create'
     get 'order_stocks/update'
