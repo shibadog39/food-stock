@@ -2,17 +2,15 @@
 
 class Eatery::SuppliersController < Eatery::ApplicationController
   def index
-    # TODO: current_shop.suppliersみたいにする
     # TODO: paginationを追加する
-    @suppliers = Supplier.all
+    @suppliers = current_shop.suppliers.all
   end
 
   def new
-    @supplier = Supplier.new
+    @supplier = current_shop.suppliers.new
   end
 
   def create
-    # TODO: current_shop.suppliers.new()みたいにする
     @supplier = current_shop.suppliers.build(supplier_params)
 
     if @supplier.save
@@ -23,13 +21,11 @@ class Eatery::SuppliersController < Eatery::ApplicationController
   end
 
   def edit
-    # TODO: current_shop.suppliers.find()みたいにする
-    @supplier = Supplier.find(params[:id])
+    @supplier = current_shop.suppliers.find(params[:id])
   end
 
   def update
-    # TODO: current_shop.suppliers.find()みたいにする
-    @supplier = Supplier.find(params[:id])
+    @supplier = current_shop.suppliers.find(params[:id])
 
     if @supplier.update(supplier_params)
       redirect_to eatery_suppliers_path, notice: '更新しました'

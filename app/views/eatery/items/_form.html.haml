@@ -3,7 +3,7 @@
 
 .form-group
   = f.label :supplier_id
-  = f.collection_select(:supplier_id, Supplier.where(shop: 1), :id, :name,
+  = f.collection_select(:supplier_id, current_shop.suppliers, :id, :name,
                         {}, { class: 'form-control' })
 .form-group
   = f.label :name

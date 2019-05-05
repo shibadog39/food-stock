@@ -53,13 +53,13 @@ gem 'seed-fu'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'haml_lint', require: false
-  gem 'rubocop', require: false
-  gem 'rubocop-performance', require: false
-  gem 'pry-byebug'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'haml_lint', require: false
+  gem 'pry-byebug'
+  gem 'rubocop', require: false
+  gem 'rubocop-performance', require: false
 end
 
 group :development do

@@ -2,19 +2,16 @@
 
 class Eatery::ItemsController < Eatery::ApplicationController
   def index
-    # TODO: current_shop.itemsみたいにする
     # TODO: paginationを追加する
-    @items = Item.all
+    @items = current_shop.items
   end
 
   def new
-    @item = Item.new
+    @item = current_shop.items.new
   end
 
   def create
-    # TODO: current_shop.suppliers.new()みたいにする
-    # テストのため一旦決めうち
-    @item = current_shop.suppliers[0].items.build(item_params)
+    @item = current_shop.items.build(item_params)
     if @item.save
       redirect_to eatery_items_path, notice: '登録しました'
     else
@@ -23,13 +20,11 @@ class Eatery::ItemsController < Eatery::ApplicationController
   end
 
   def edit
-    # TODO: current_shop.items.find()みたいにする
-    @item = Item.find(params[:id])
+    @item = current_shop.items.find(params[:id])
   end
 
   def update
-    # TODO: current_shop.items.find()みたいにする
-    @item = Item.find(params[:id])
+    @item = current_shop.items.find(params[:id])
 
     if @item.update(item_params)
       redirect_to eatery_items_path, notice: '更新しました'
