@@ -20,5 +20,8 @@ module FoodStock
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
+
+     # assetsの探索pathの追加
+     Rails.application.config.assets.paths << Rails.root.join('vendor', 'assets')
   end
 end
