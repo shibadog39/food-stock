@@ -6,7 +6,7 @@
     = sf.date_select :target_date, default: @target_date
     = sf.submit '日付を切り替える'
 
-  = form_with model: @stock_collection, url: bulk_update_eatery_actual_stocks_path, local: true do |cf|
+  = form_with model: @stock_form, url: bulk_update_eatery_actual_stocks_path, local: true do |cf|
     = cf.hidden_field :target_date, value: @target_date
     - if cf.object.errors.any?
       = render 'layouts/eatery/error_messages', errors: cf.object.errors
@@ -16,14 +16,17 @@
         %tr
           %th 食材名
           %th 在庫
-      %tbody
+      %tbody#sortable
         - cf.object.actual_stocks.each do |stock|
           = cf.fields_for 'actual_stocks[]', stock do |f|
             %tr
-              %td= f.object.item.name
+              %td
+                %i.fas.fa-sort
+                = f.object.item.name
+                = f.hidden_field :sequence, class: 'hidden-sequence'
               %td
                 = f.number_field :quantity
                 - unless f.object.quantity
                   未登録です！
     .div
-      = cf.button '保存', type: 'submit', class: 'button'
+      = cf.button '保存', type: 'submit', class: 'save-btn'
