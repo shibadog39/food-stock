@@ -2,14 +2,14 @@
 
 class Eatery::ActualStocksController < Eatery::ApplicationController
   def index
-    @stock_collection = ActualStockCollection.new(current_shop: current_shop, target_date: index_target_date)
+    @stock_form = ActualStockForm.new(current_shop: current_shop, target_date: index_target_date)
   end
 
   def bulk_update
-    @stock_collection = ActualStockCollection.new(current_shop: current_shop,
-                                                  target_date: update_target_date,
-                                                  update_params: stock_collection_params)
-    if @stock_collection.save
+    @stock_form = ActualStockForm.new(current_shop: current_shop,
+                                      target_date: update_target_date,
+                                      update_params: stock_collection_params)
+    if @stock_form.save
       redirect_to eatery_actual_stocks_path('target_date(1i)' => @target_date.year,
                                             'target_date(2i)' => @target_date.month,
                                             'target_date(3i)' => @target_date.day),
@@ -33,8 +33,8 @@ class Eatery::ActualStocksController < Eatery::ApplicationController
 
   def update_target_date
     @target_date ||=
-      if params[:actual_stock_collection] && params[:actual_stock_collection][:target_date]
-        params[:actual_stock_collection][:target_date].to_date
+      if params[:actual_stock_form] && params[:actual_stock_form][:target_date]
+        params[:actual_stock_form][:target_date].to_date
       else
         Date.today
       end
@@ -43,7 +43,7 @@ class Eatery::ActualStocksController < Eatery::ApplicationController
 
   def stock_collection_params
     params
-      .require(:actual_stock_collection)
-      .permit(actual_stocks: [:quantity])[:actual_stocks]
+      .require(:actual_stock_form)
+      .permit(actual_stocks: %i[quantity sequence])[:actual_stocks]
   end
 end
