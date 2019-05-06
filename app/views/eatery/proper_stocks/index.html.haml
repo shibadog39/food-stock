@@ -1,6 +1,6 @@
 %section
   %h1.title 最適在庫数一覧
-  = form_with model: @items, url: eatery_proper_stocks_update_path, local: true do |f|
+  = form_with model: @proper_collection, url: eatery_proper_stocks_bulk_update_path, local: true do |pcf|
     %table.table.is-bordered.is-hoverable
       %thead
       %tr
@@ -8,13 +8,12 @@
         %th 日付グループ
         %th 最適在庫数
       %tbody
-        - @items.each do |item|
-          - item.proper_stocks.each do |ps|
+        - pcf.object.proper_stocks.each do |ps|
+          = pcf.fields_for 'proper_stocks[]', ps do |f|
             %tr
-            %td= item.name
-            %td= ps.date_type
+            %td= f.object.item.name
+            %td= f.object.date_type
             %td
-              = form_with model: ps, url: eatery_proper_stocks_update_path, local: true do |psf|
-                = psf.number_field :quantity, class: 'form-control'
+              = f.number_field :quantity, class: 'form-control'
               
-    = button_to "test", eatery_proper_stocks_update_path, class: "btn btn-success"
+    = pcf.button '保存', type: 'submit', class: 'btn btn-success'

@@ -6,8 +6,8 @@ class Item < ApplicationRecord
 
   belongs_to :shop
   belongs_to :supplier
-  has_many :order_stocks
-  has_many :proper_stocks
+  has_many :order_stocks, dependent: :destroy
+  has_many :proper_stocks, dependent: :destroy
   has_many :actual_stocks
 
   validates :name, presence: true

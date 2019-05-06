@@ -20,8 +20,7 @@ Rails.application.routes.draw do
     get 'order_stocks/create'
     get 'order_stocks/update'
     get 'proper_stocks/index'
-    post 'proper_stocks/create'
-    post 'proper_stocks/update'
+    post 'proper_stocks/bulk_update'
   end
 
   # 管理画面あとで作らなきゃいけない

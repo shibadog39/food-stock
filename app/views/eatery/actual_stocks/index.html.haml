@@ -16,7 +16,7 @@
         %tr
           %th 食材名
           %th 在庫
-      %tbody
+      %tbody  
         - cf.object.actual_stocks.each do |stock|
           = cf.fields_for 'actual_stocks[]', stock do |f|
             %tr
