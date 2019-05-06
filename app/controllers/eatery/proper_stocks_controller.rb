@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Eatery::ProperStocksController < ApplicationController
   def index
     @items = current_shop.items
@@ -12,4 +14,5 @@ class Eatery::ProperStocksController < ApplicationController
     binding.pry
     puts(params)
   end
+
 end
