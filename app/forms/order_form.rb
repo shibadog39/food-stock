@@ -3,18 +3,13 @@
 class OrderForm
   include ActiveModel::Model
 
-  attr_accessor :order_stock, :stock_num, :proper_stock_num, :not_arrived_stock_num
+  attr_accessor :stock_num, :proper_stock_num, :not_arrived_stock_num, :order_stock
 
   def initialize(item:, order_date: Date.today)
     self.stock_num = item.actual_stocks.order('counted_at').last.quantity
     self.proper_stock_num = loadProperStockNum(item, order_date)
     self.not_arrived_stock_num = loadNotArrivedStockNum(item, order_date)
-
-    self.order_stock = item.order_stocks.find_or_initialize_by(delivery_date: order_date)
-    if self.order_stock.new_record?
-      self.order_stock.quantity = self.proper_stock_num - self.stock_num - self.not_arrived_stock_num
-      self.order_stock.save
-    end
+    self.order_stock = findOrCreateOrderStock(item, order_date)
   end
 
   private
@@ -51,11 +46,18 @@ class OrderForm
    end
 
    def loadNotArrivedStockNum item, order_date
-    lead_time = item.supplier.lead_time
-    # not_arrived_date = order_date.ago(lead_time.days)
-    not_arrived_date = order_date.ago(100.days)
-    notArrivedOrdersNum = item.order_stocks.where('delivery_date > ?', not_arrived_date).group('item_id').sum('quantity')
-    a
+    notArrivedOrdersNum = item.order_stocks.where('delivery_date > ?', order_date.ago(item.supplier.lead_time.days))
+                                           .group('item_id')
+                                           .sum('quantity')
+    notArrivedOrdersNum.empty? ? 0 : notArrivedOrdersNum.fetch(item.id)
+   end
+
+   def findOrCreateOrderStock item, order_date
+    order_stock = item.order_stocks.find_or_create_by(delivery_date: order_date) do |order_stock|
+      order_stock.shop_id = item.shop_id
+      # FIXME マイナスが入るのが許容されているので修正
+      order_stock.quantity = self.proper_stock_num - self.stock_num - self.not_arrived_stock_num
+    end
    end
 
   end

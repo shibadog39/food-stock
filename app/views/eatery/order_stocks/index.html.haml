@@ -1,23 +1,21 @@
 %section
   %h1.title 発注数一覧画面
-
-  = form_with model: @order_collection, url: eatery_order_stocks_bulk_update_path, local: true do |ocf|
-  = ocf.button '保存', type: 'submit', class: 'btn btn-success'
-  %table.table.is-bordered.is-hoverable
-    %thead
-      %tr
-        %th 食材名
-        %th 在庫数
-        %th 未着在庫数
-        %th 最適在庫数
-        %th 発注数
-    %tbody
-      - ocf.object.order_forms.each do |of|
-          = ocf.fields_for 'order_forms[]', of.order_stock do |f|
+  = form_with model: @order_collection, url: eatery_order_stocks_bulk_update_path, local: true do |ocf|
+    %table.table.is-bordered.is-hoverable
+      %thead
         %tr
-          %td= f.object.item.name
-          %td= of.stock_num
-          %td= of.not_arrived_stock_num
-          %td= of.proper_stock_num
-          %td= f.number_field :quantity, class: 'form-control'
-          
+          %th 食材名
+          %th 在庫数
+          %th 未着数
+          %th 最適在庫数
+          %th 発注数
+      %tbody
+        - ocf.object.order_forms.each do |of|
+          = ocf.fields_for 'order_forms[]', of.order_stock do |f|
+            %tr
+              %td= f.object.item.name
+              %td= of.stock_num
+              %td= of.not_arrived_stock_num
+              %td= of.proper_stock_num
+              %td= f.number_field :quantity, class: 'form-control'
+    = ocf.button '保存', type: 'submit', class: 'btn btn-success'
