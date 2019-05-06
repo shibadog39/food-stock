@@ -1,6 +1,8 @@
 %section
   %h1.title 発注数一覧画面
 
+  = form_with model: @order_collection, url: eatery_order_stocks_bulk_update_path, local: true do |ocf|
+  = ocf.button '保存', type: 'submit', class: 'btn btn-success'
   %table.table.is-bordered.is-hoverable
     %thead
       %tr
@@ -10,13 +12,12 @@
         %th 最適在庫数
         %th 発注数
     %tbody
-      - @items.each do |item|
+      - ocf.object.order_forms.each do |of|
+          = ocf.fields_for 'order_forms[]', of.order_stock do |f|
         %tr
-          %td= supplier.id
-          %td= supplier.name
-          %td= supplier.tel
-          %td= supplier.fax
-          %td= supplier.email
-          %td= supplier.lead_time
-          %td= supplier.memo
-          %td= link_to '編集', edit_eatery_supplier_path(supplier)
+          %td= f.object.item.name
+          %td= of.stock_num
+          %td= of.not_arrived_stock_num
+          %td= of.proper_stock_num
+          %td= f.number_field :quantity, class: 'form-control'
+          

@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
 class Eatery::OrderStocksController < ApplicationController
-  def index; end
+  def index
+    @order_collection = OrderFormCollection.new(current_shop: current_shop)
+  end
 
-  def create; end
+  def bulk_update
+   a
+  end
 
-  def update; end
 end

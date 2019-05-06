@@ -12,7 +12,7 @@
           = pcf.fields_for 'proper_stocks[]', ps do |f|
             %tr
             %td= f.object.item.name
-            %td= f.object.date_type
+            %td= f.object.date_type_text
             %td
               = f.number_field :quantity, class: 'form-control'
               
