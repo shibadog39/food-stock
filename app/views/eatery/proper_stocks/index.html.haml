@@ -1,16 +1,20 @@
 %section
   %h1.title 最適在庫数一覧
-  %table.table.is-bordered.is-hoverable
-    %thead
+  = form_with model: @items, url: eatery_proper_stocks_update_path, local: true do |f|
+    %table.table.is-bordered.is-hoverable
+      %thead
       %tr
         %th 食材名
         %th 日付グループ
         %th 最適在庫数
-    %tbody
-      - @items.each do |item|
-        - item.proper_stocks.each do |ps|
-          %tr
-          %td= item.name
-          %td= ps.date_type
-          %td
-            %input.form-control= ps.quantity 
+      %tbody
+        - @items.each do |item|
+          - item.proper_stocks.each do |ps|
+            %tr
+            %td= item.name
+            %td= ps.date_type
+            %td
+              = form_with model: ps, url: eatery_proper_stocks_update_path, local: true do |psf|
+                = psf.number_field :quantity, class: 'form-control'
+              
+    = button_to "test", eatery_proper_stocks_update_path, class: "btn btn-success"

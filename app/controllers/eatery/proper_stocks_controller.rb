@@ -4,8 +4,12 @@ class Eatery::ProperStocksController < ApplicationController
   end
 
   def create
+    binding.pry
+    puts(params)
   end
 
   def update
+    binding.pry
+    puts(params)
   end
 end
