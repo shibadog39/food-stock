@@ -5,4 +5,4 @@ ja:
         weekdayNextWeekday: 平日かつ次の日も平日 
         weekdayNextHoliday: 平日かつ次の日が休日
         holidayNextWeekday: 休日かつ次の日が平日
-        holidayNextHoliday: 休日かつ次の日が休日
+        holidayNextHoliday: 休日かつ次の日も休日

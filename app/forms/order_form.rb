@@ -20,18 +20,6 @@ class OrderForm
     item.proper_stocks.find_by(date_type: date_type).quantity
    end
 
-   def loadOrderDateType date
-    
-   end
-
-   def isWeekDay date
-
-   end
-
-   def isNextDayWeekDay date
-
-   end
-
    def loadNotArrivedStockNum item, order_date
     notArrivedOrdersNum = item.order_stocks.where('delivery_date > ?', order_date.ago(item.supplier.lead_time.days))
                                            .group('item_id')
