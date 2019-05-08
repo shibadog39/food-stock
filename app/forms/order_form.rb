@@ -15,26 +15,13 @@ class OrderForm
   private
 
    def loadProperStockNum item, order_date
-    date_type = loadOrderDateType(order_date)
-    proper_stock = item.proper_stocks.find_by(date_type: date_type)
-    proper_stock.quantity
+    chain = WeekdayNextweekday.new(WeekdayNextHoliday.new(HolidayNextweekday.new(HolidayNextholiday.new)))
+    date_type = chain.call(order_date)
+    item.proper_stocks.find_by(date_type: date_type).quantity
    end
 
    def loadOrderDateType date
-    # if isWeekDay
-    #   if isNextDayWeekDay date
-
-    #   else
-      
-    #   end
-    # else
-    #   if isNextDayWeekDay date
-
-    #   else
-      
-    #   end
-    # end
-    0
+    
    end
 
    def isWeekDay date

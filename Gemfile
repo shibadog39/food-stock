@@ -51,6 +51,8 @@ gem 'enumerize'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'seed-fu'
+gem 'holiday_japan'
+gem 'business_time'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
