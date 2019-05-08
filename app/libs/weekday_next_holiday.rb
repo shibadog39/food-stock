@@ -3,7 +3,7 @@ class WeekdayNextHoliday < BaseDateType
     private 
      
      def date_type
-        1
+      ProperStock.date_type.find_value(:weekdayNextHoliday).value
      end
 
      def applicable?(order_date)
