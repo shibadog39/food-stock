@@ -15,11 +15,10 @@ class Eatery::ProperStocksController < ApplicationController
   end
 
   private
-   
-    def proper_collection_params
-      params
-        .require(:proper_stock_collection)
-        .permit(proper_stocks: [:quantity])[:proper_stocks]
-    end
 
+  def proper_collection_params
+    params
+      .require(:proper_stock_collection)
+      .permit(proper_stocks: [:quantity])[:proper_stocks]
+  end
 end

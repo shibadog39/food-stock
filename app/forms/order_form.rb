@@ -12,28 +12,27 @@ class OrderForm
     self.order_stock = find_or_create_order_stock(item, delivery_date)
   end
 
-  private
+    private
 
-   def load_proper_stock_num item, delivery_date
+  def load_proper_stock_num(item, delivery_date)
     chain = WeekdayNextweekday.new(WeekdayNextHoliday.new(HolidayNextweekday.new(HolidayNextholiday.new)))
     date_type = chain.call(delivery_date)
     item.proper_stocks.find_by(date_type: date_type).quantity
-   end
+  end
 
-   def load_not_arrived_stock_num item, delivery_date
+  def load_not_arrived_stock_num(item, delivery_date)
     lead_time = item.lead_time || item.supplier.lead_time
     not_arrived_orders_num = item.order_stocks.where('delivery_date > ?', delivery_date.ago(lead_time.days))
-                                              .group('item_id')
-                                              .sum('quantity')
+                                 .group('item_id')
+                                 .sum('quantity')
     not_arrived_orders_num.empty? ? 0 : not_arrived_orders_num.fetch(item.id)
-   end
+  end
 
-   def find_or_create_order_stock item, delivery_date
+  def find_or_create_order_stock(item, delivery_date)
     order_stock = item.order_stocks.find_or_create_by(delivery_date: delivery_date) do |order_stock|
       order_stock.shop_id = item.shop_id
-      # FIXME マイナスが入るのが許容されているので修正
+      # FIXME: マイナスが入るのが許容されているので修正
       order_stock.quantity = proper_stock_num - stock_num - not_arrived_stock_num
     end
-   end
-
+  end
   end

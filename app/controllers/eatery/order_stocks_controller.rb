@@ -14,12 +14,11 @@ class Eatery::OrderStocksController < ApplicationController
     end
   end
 
-  private 
-  
-    def order_collection_params
-      params
-        .require(:order_form_collection)
-        .permit(order_forms: [:quantity])[:order_forms]
-    end
+  private
 
+  def order_collection_params
+    params
+      .require(:order_form_collection)
+      .permit(order_forms: [:quantity])[:order_forms]
+  end
 end
