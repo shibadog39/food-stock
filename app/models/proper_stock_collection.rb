@@ -7,11 +7,11 @@ class ProperStockCollection
 
   def initialize(current_shop:, update_params: nil)
     self.proper_stocks = current_shop.items.map do |item|
-      stockList = item.proper_stocks
-      stockList.each do |stock|
+      stock_list = item.proper_stocks
+      stock_list.each do |stock|
         stock.attributes = update_params[stock.id.to_s] if update_params
       end
-      stockList
+      stock_list
     end
     proper_stocks.flatten!
   end
@@ -22,9 +22,9 @@ class ProperStockCollection
     proper_stocks.map(&:save).all?
   end
 
-    private
+  private
 
   def valid?
     proper_stocks.map(&:valid?).all?
   end
-  end
+end

@@ -6,13 +6,13 @@ class OrderForm
   attr_accessor :stock_num, :proper_stock_num, :not_arrived_stock_num, :order_stock
 
   def initialize(item:, delivery_date:)
-    self.stock_num = item.actual_stocks.order('counted_at').last.quantity
+    self.stock_num = item.actual_stocks.where.not(quantity: nil).order('counted_at').last.quantity
     self.proper_stock_num = load_proper_stock_num(item, delivery_date)
     self.not_arrived_stock_num = load_not_arrived_stock_num(item, delivery_date)
     self.order_stock = find_or_create_order_stock(item, delivery_date)
   end
 
-    private
+  private
 
   def load_proper_stock_num(item, delivery_date)
     chain = WeekdayNextweekday.new(WeekdayNextHoliday.new(HolidayNextweekday.new(HolidayNextholiday.new)))
@@ -29,10 +29,10 @@ class OrderForm
   end
 
   def find_or_create_order_stock(item, delivery_date)
-    order_stock = item.order_stocks.find_or_create_by(delivery_date: delivery_date) do |order_stock|
+    item.order_stocks.find_or_create_by(delivery_date: delivery_date) do |order_stock|
       order_stock.shop_id = item.shop_id
-      # FIXME: マイナスが入るのが許容されているので修正
-      order_stock.quantity = proper_stock_num - stock_num - not_arrived_stock_num
+      quantity = proper_stock_num - stock_num - not_arrived_stock_num
+      order_stock.quantity = quantity.positive? ? quantity : 0
     end
   end
-  end
+end

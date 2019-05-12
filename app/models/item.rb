@@ -15,7 +15,12 @@ class Item < ApplicationRecord
   after_create :insert_proper_stock
 
   def insert_proper_stock
-    @properStocks = proper_stocks.build([{ shop_id: shop_id, date_type: 0 }, { shop_id: shop_id, date_type: 1 }, { shop_id: shop_id, date_type: 2 }, { shop_id: shop_id, date_type: 3 }])
-    @properStocks.each(&:save!)
+    @proper_stocks = proper_stocks.build([
+                                           { shop_id: shop_id, date_type: 0 },
+                                           { shop_id: shop_id, date_type: 1 },
+                                           { shop_id: shop_id, date_type: 2 },
+                                           { shop_id: shop_id, date_type: 3 }
+                                         ])
+    @proper_stocks.each(&:save!)
   end
 end
