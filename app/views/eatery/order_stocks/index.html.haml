@@ -1,22 +1,29 @@
 %section
   %h1.title 発注数一覧画面
+  = form_with method: 'get', url: eatery_order_stocks_index_path, local: true do |dd|
+    = dd.date_field :delivery_date, value: @delivery_date, class: 'form-control'
+    = dd.submit "日付を切り替える", class: 'btn btn-outline-dark'
 
-  %table.table.is-bordered.is-hoverable
-    %thead
-      %tr
-        %th 食材名
-        %th 在庫数
-        %th 未着在庫数
-        %th 最適在庫数
-        %th 発注数
-    %tbody
-      - @items.each do |item|
+  = form_with model: @order_collection, url: eatery_order_stocks_bulk_update_path, local: true do |ocf|
+    = ocf.hidden_field :delivery_date, value: @delivery_date
+    - if ocf.object.errors.any?
+      = render 'layouts/eatery/error_messages', errors: ocf.object.errors
+
+    %table.table.is-bordered.is-hoverable
+      %thead
         %tr
-          %td= supplier.id
-          %td= supplier.name
-          %td= supplier.tel
-          %td= supplier.fax
-          %td= supplier.email
-          %td= supplier.lead_time
-          %td= supplier.memo
-          %td= link_to '編集', edit_eatery_supplier_path(supplier)
+          %th 食材名
+          %th 在庫数
+          %th 未着数
+          %th 最適在庫数
+          %th 発注数
+      %tbody
+        - ocf.object.order_forms.each do |of|
+          = ocf.fields_for 'order_forms[]', of.order_stock do |f|
+            %tr
+              %td= f.object.item.name
+              %td= of.stock_num
+              %td= of.not_arrived_stock_num
+              %td= of.proper_stock_num
+              %td= f.number_field :quantity, class: 'form-control'
+    = ocf.button '保存', type: 'submit', class: 'btn btn-success'

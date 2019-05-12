@@ -47,7 +47,9 @@ gem 'rails-i18n'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'bootstrap', '~> 4.1.1'
+gem 'business_time'
 gem 'enumerize'
+gem 'holiday_japan'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'seed-fu'
