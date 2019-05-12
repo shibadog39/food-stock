@@ -9,10 +9,8 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     = render 'layouts/eatery/header'
-    .container_fluid
+    .container
       .row
-        .col-sm-2
-          = render 'layouts/eatery/sidemenu'
-        .col-sm-9.pt-3
+        .col-sm-12
           = render 'layouts/eatery/flash_message'
           = yield

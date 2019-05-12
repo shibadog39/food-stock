@@ -1,12 +1,13 @@
 %section
   %h1.title 在庫数登録
+  %hr
 
   %h2 #{@target_date} の在庫状況
   = form_with method: :get, url: eatery_actual_stocks_path, local: true do |sf|
     = sf.date_select :target_date, default: @target_date
-    = sf.submit '日付を切り替える'
+    = sf.submit '日付を切り替える', class: 'btn btn-outline-dark ml-3'
 
-  = form_with model: @stock_form, url: bulk_update_eatery_actual_stocks_path, local: true do |cf|
+  = form_with model: @stock_form, url: bulk_update_eatery_actual_stocks_path, local: true, class: 'form-inline' do |cf|
     = cf.hidden_field :target_date, value: @target_date
     - if cf.object.errors.any?
       = render 'layouts/eatery/error_messages', errors: cf.object.errors
@@ -25,8 +26,8 @@
                 = f.object.item.name
                 = f.hidden_field :sequence, class: 'hidden-sequence'
               %td
-                = f.number_field :quantity
+                = f.number_field :quantity, class: 'form-control', style: 'width: 200px;'
                 - unless f.object.quantity
                   未登録です！
     .div
-      = cf.button '保存', type: 'submit', class: 'save-btn'
+      = cf.button '保存', type: 'submit', class: 'btn btn-success save-btn'
