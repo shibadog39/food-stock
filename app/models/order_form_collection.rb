@@ -5,9 +5,9 @@ class OrderFormCollection
   
     attr_accessor :order_forms
   
-    def initialize(current_shop:, target_date: Date.today, update_params: nil)
+    def initialize(current_shop:, delivery_date: Date.today, update_params: nil)
       self.order_forms = current_shop.items.map do |item|
-        form = OrderForm.new(item: item)
+        form = OrderForm.new(item: item, delivery_date: delivery_date)
         form.order_stock.attributes = update_params[form.order_stock.id.to_s] if update_params
         form
       end

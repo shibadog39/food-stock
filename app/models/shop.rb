@@ -7,7 +7,7 @@ class Shop < ApplicationRecord
   # :recoverable, :rememberable, :validatable
   has_many :suppliers
   has_many :items
-  has_many :order_stocks, through: :items, source: :actual_stocks
+  has_many :order_stocks, through: :items, source: :order_stocks
   has_many :proper_stocks
   has_many :actual_stocks, through: :items, source: :actual_stocks
 

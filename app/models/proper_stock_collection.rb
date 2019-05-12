@@ -13,7 +13,7 @@ class ProperStockCollection
         end
         stockList
       end
-      self.proper_stocks.flatten!
+      proper_stocks.flatten!
     end
 
     def save
