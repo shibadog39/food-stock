@@ -1,8 +1,11 @@
 %section
   %h1.title 発注数一覧画面
-  = form_with method: 'get', url: eatery_order_stocks_index_path, local: true do |dd|
-    = dd.date_field :delivery_date, value: @delivery_date, class: 'form-control'
-    = dd.submit "日付を切り替える", class: 'btn btn-outline-dark'
+  %hr
+
+  
+  = form_with method: 'get', url: eatery_order_stocks_index_path, local: true, class: 'form-inline mb-3' do |dd|
+    = dd.date_field :delivery_date, value: @delivery_date, class: 'form-control', style: 'width:200px;'
+    = dd.submit "日付を切り替える", class: 'btn btn-outline-dark ml-3'
 
   = form_with model: @order_collection, url: eatery_order_stocks_bulk_update_path, local: true do |ocf|
     = ocf.hidden_field :delivery_date, value: @delivery_date

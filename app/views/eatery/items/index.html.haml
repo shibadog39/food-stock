@@ -1,12 +1,13 @@
 %section
-  %h1.title 商品一覧
+  %h1.title 食材一覧
+  %hr
 
-  = link_to '新規作成', new_eatery_item_path
+  = link_to ' 新規作成', new_eatery_item_path, class: 'btn btn-outline-success fas fa-plus'
   %table.table.is-bordered.is-hoverable
     %thead
       %tr
         %th ID
-        %th 商品名
+        %th 食材名
         %th 仕入先
         %th タイプ
         %th リードタイム

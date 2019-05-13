@@ -1,5 +1,7 @@
 %section
   %h1.title 最適在庫数一覧
+  %hr
+
   = form_with model: @proper_collection, url: eatery_proper_stocks_bulk_update_path, local: true do |pcf|
     %table.table.is-bordered.is-hoverable
       %thead
