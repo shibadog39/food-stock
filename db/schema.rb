@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_06_040712) do
+ActiveRecord::Schema.define(version: 2019_05_13_144455) do
 
   create_table "actual_stocks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "item_id", null: false
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2019_05_06_040712) do
     t.datetime "delivery_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "order_date"
     t.index ["item_id"], name: "index_order_stocks_on_item_id"
     t.index ["shop_id"], name: "index_order_stocks_on_shop_id"
   end
@@ -52,7 +53,7 @@ ActiveRecord::Schema.define(version: 2019_05_06_040712) do
     t.bigint "shop_id"
     t.bigint "item_id"
     t.integer "date_type"
-    t.integer "quantity"
+    t.integer "quantity", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_proper_stocks_on_item_id"
