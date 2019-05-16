@@ -2,22 +2,22 @@
   = render 'layouts/eatery/error_messages', errors: f.object.errors
 
 .form-group
-  = f.label :name
-  = f.text_field :name, class: 'form-control', placeholder: 'おばな生鮮食品'
+  = f.label :name, '仕入先名'
+  = f.text_field :name, class: 'form-control', placeholder: '生鮮食品株式会社'
 .form-group
-  = f.label :tel
+  = f.label :tel, '電話番号'
   = f.text_field :tel, class: 'form-control', placeholder: '0123-456-789'
 .form-group
-  = f.label :fax
+  = f.label :fax, 'FAX'
   = f.text_field :fax, class: 'form-control', placeholder: '0123-456-789'
 .form-group
-  = f.label :email
+  = f.label :email, 'メールアドレス'
   = f.text_field :email, class: 'form-control', placeholder: '0123-456-789'
 .form-group
-  = f.label :lead_time
+  = f.label :lead_time, '発注から到着までの日数'
   = f.number_field :lead_time, class: 'form-control', placeholder: '2'
 
 .form-group
-  = f.label :memo
+  = f.label :memo, 'メモ'
   = f.text_field :memo, class: 'form-control', placeholder: 'メモ'
 = f.button '保存', type: 'submit', class: 'btn btn-success'
