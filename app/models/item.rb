@@ -15,12 +15,21 @@ class Item < ApplicationRecord
   after_create :insert_proper_stock
 
   def insert_proper_stock
-    @proper_stocks = proper_stocks.build([
+    proper_stocks = proper_stocks.build([
                                            { shop_id: shop_id, date_type: 0 },
                                            { shop_id: shop_id, date_type: 1 },
                                            { shop_id: shop_id, date_type: 2 },
                                            { shop_id: shop_id, date_type: 3 }
                                          ])
-    @proper_stocks.each(&:save!)
+    proper_stocks.each(&:save!)
   end
+
+  def self.load_not_regist_stock_items shop
+    no_actual_stock_items = []
+    shop.items.each do |item|
+      no_actual_stock_items.push(item) if item.actual_stocks.where.not(quantity: nil).last.nil?
+    end
+    no_actual_stock_items
+  end
+
 end

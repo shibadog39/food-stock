@@ -12,6 +12,7 @@ class Eatery::ItemsController < Eatery::ApplicationController
 
   def create
     @item = current_shop.items.build(item_params)
+    @item.lead_time ||= @item.supplier.lead_time
     if @item.save
       redirect_to eatery_items_path, notice: '登録しました'
     else
@@ -25,7 +26,6 @@ class Eatery::ItemsController < Eatery::ApplicationController
 
   def update
     @item = current_shop.items.find(params[:id])
-
     if @item.update(item_params)
       redirect_to eatery_items_path, notice: '更新しました'
     else
