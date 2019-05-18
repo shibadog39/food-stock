@@ -3,9 +3,10 @@
   %hr
 
   %h2 #{@target_date} の在庫状況
-  = form_with method: :get, url: eatery_actual_stocks_path, local: true do |sf|
-    = sf.date_select :target_date, default: @target_date
+  = form_with method: :get, url: eatery_actual_stocks_path, local: true, class: 'form-inline' do |sf|
+    = sf.date_field :target_date, value: @target_date, class: 'form-control', style: 'width:250px;'
     = sf.submit '日付を切り替える', class: 'btn btn-outline-dark ml-3'
+
 
   = form_with model: @stock_form, url: bulk_update_eatery_actual_stocks_path, local: true, class: 'form-inline' do |cf|
     = cf.hidden_field :target_date, value: @target_date
