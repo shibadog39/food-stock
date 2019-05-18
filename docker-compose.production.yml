@@ -1,1 +1,5 @@
-command: bundle exec rails s -e production
+version: '3'
+
+services:
+  web:
+    command: bundle exec rails s -e production
