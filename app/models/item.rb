@@ -14,7 +14,7 @@ class Item < ApplicationRecord
 
   after_create :initialize_proper_stock
 
-  def self.load_not_regist_stock_items shop
+  def self.load_not_regist_stock_items(shop)
     no_actual_stock_items = []
     shop.items.each do |item|
       no_actual_stock_items.push(item) if item.actual_stocks.where.not(quantity: nil).last.nil?
@@ -26,8 +26,7 @@ class Item < ApplicationRecord
 
   def initialize_proper_stock
     ProperStock.date_type.values.each do |type|
-      self.proper_stocks.create!(shop_id: shop_id, date_type: type)
+      proper_stocks.create!(shop_id: shop_id, date_type: type)
     end
   end
-
 end
