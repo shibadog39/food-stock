@@ -3,11 +3,9 @@
     発注管理
   %ul.nav.flex-column
     %li.nav-item
-      = link_to ' 発注情報入力', eatery_order_stocks_index_path, class: 'nav-link fas fa-file'
+      = link_to ' 発注情報登録', eatery_order_stocks_index_path, class: 'nav-link fas fa-file'
     %li.nav-item
       = link_to ' 在庫状況登録', eatery_actual_stocks_path, class: 'nav-link fas fa-archive'
-    %li.nav-item
-      = link_to ' 最適在庫数設定', eatery_proper_stocks_index_path, class: 'nav-link fas fa-boxes'
   %p
     マスタ情報管理
   %ul.nav.flex-column
@@ -15,3 +13,5 @@
       = link_to ' 仕入先一覧', eatery_suppliers_path, class: 'nav-link fas fa-store-alt'
     %li.nav-item
       = link_to ' 食材一覧', eatery_items_path, class: 'nav-link fas fa-apple-alt'
+    %li.nav-item
+      = link_to ' 最適在庫数設定', eatery_proper_stocks_index_path, class: 'nav-link fas fa-boxes'
