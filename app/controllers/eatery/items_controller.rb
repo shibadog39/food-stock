@@ -12,6 +12,8 @@ class Eatery::ItemsController < Eatery::ApplicationController
 
   def create
     @item = current_shop.items.build(item_params)
+    return render :new if @item.invalid?
+
     @item.lead_time ||= @item.supplier.lead_time
     if @item.save
       redirect_to eatery_items_path, notice: '登録しました'
@@ -38,6 +40,6 @@ class Eatery::ItemsController < Eatery::ApplicationController
   def item_params
     params.require(:item).permit(
       :supplier_id, :name, :category, :lead_time, :price, :memo
-    ).merge(shop_id: 1)
+    ).merge(shop_id: current_shop.id)
   end
 end
