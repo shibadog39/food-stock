@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class Eatery::ItemsController < Eatery::ApplicationController
-  before_action :validate_supplier, only: [:create, :update]
-
   def index
     # TODO: paginationを追加する
     @items = current_shop.items
@@ -38,10 +36,6 @@ class Eatery::ItemsController < Eatery::ApplicationController
   end
 
   private
-
-  def validate_supplier
-
-  end
 
   def item_params
     params.require(:item).permit(
