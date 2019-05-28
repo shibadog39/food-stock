@@ -1,0 +1,16 @@
+ja:
+  activerecord:
+    models:
+      shop: 店舗
+    attributes:
+      shop:
+        name: 店名
+        email: メールアドレス
+      supplier:
+        name: 仕入先名
+      item:
+        name: 食材名
+        supplier: 仕入先
+        category: カテゴリー
+        lead_time: 発注から到着までの日数
+        memo: メモ

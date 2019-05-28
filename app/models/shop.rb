@@ -11,5 +11,7 @@ class Shop < ApplicationRecord
   has_many :proper_stocks
   has_many :actual_stocks, through: :items, source: :actual_stocks
 
+  validates :name, :email, presence: true
+
   devise :database_authenticatable, :registerable
 end

@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   has_many :proper_stocks, dependent: :destroy
   has_many :actual_stocks
 
-  validates :name, presence: true
+  validates :name, :supplier, :lead_time, presence: true
 
   after_create :initialize_proper_stock
 
