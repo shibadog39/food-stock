@@ -39,6 +39,6 @@ class Eatery::SuppliersController < Eatery::ApplicationController
   def supplier_params
     params.require(:supplier).permit(
       :name, :tel, :fax, :email, :lead_time, :memo
-    ).merge(shop_id: 1)
+    ).merge(shop_id: current_shop.id)
   end
 end

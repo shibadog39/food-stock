@@ -2,6 +2,9 @@
 
 Rails.application.routes.draw do
   root to: 'eatery/suppliers#new'
+  
+  get 'static_pages/about'
+  
   devise_for :shops, controllers: {
     registrations: 'shops/registrations',
     sessions: 'shops/sessions'
