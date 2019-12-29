@@ -1,4 +1,8 @@
 # README
+## 資料
+- [飲食店業務分析](https://docs.google.com/spreadsheets/d/1drwHjFpCz4v_QBm2E8EMtBPyGcoLa3TvToBDG1mU7mk/edit#gid=0)  
+- [要件定義](https://docs.google.com/spreadsheets/d/1ETEMSWruTbVzw9RAzRiKCvJlLDkJDSyNP-cF4G65pDM/edit#gid=640974096)
+
 
 ## pushする前にすること
 CIに組み込むの断念しちまった。
