@@ -8,4 +8,9 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    = yield
+    = render 'layouts/eatery/header'
+    .container
+      .row
+        .col-sm-12
+          = render 'layouts/eatery/flash_message'
+          = yield

@@ -1,0 +1,8 @@
+ja:
+  enumerize:
+    proper_stock:
+      date_type:
+        weekdayNextWeekday: 平日かつ次の日も平日（月〜木曜） 
+        weekdayNextHoliday: 平日かつ次の日が休日（金曜,祝前日）
+        holidayNextWeekday: 休日かつ次の日が平日（日曜,祝日）
+        holidayNextHoliday: 休日かつ次の日も休日（土曜）

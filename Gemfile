@@ -37,13 +37,30 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'haml-rails'
 
+gem 'devise'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+gem 'font-awesome-sass', '5.3.1'
+gem 'rails-i18n'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 
+gem 'bootstrap', '~> 4.1.1'
+gem 'business_time'
+gem 'enumerize'
+gem 'holiday_japan'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'seed-fu'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'haml_lint', require: false
+  gem 'pry-byebug'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
 end

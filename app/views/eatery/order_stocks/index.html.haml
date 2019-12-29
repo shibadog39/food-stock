@@ -1,0 +1,39 @@
+%section
+  %h1.title 発注数一覧画面
+  %hr
+
+  - if @not_regist_stock_items.any?
+    .alert.alert-warning
+      以下の食材は在庫数が登録されていません。
+      - @not_regist_stock_items.each do |item|
+        %li= item.name
+
+
+  = form_with method: 'get', url: eatery_order_stocks_index_path, local: true, class: 'form-inline' do |dd|
+    %span 発注日：
+    = dd.date_field :order_date, value: @order_date, class: 'form-control', style: 'width:250px;'
+    = dd.submit "発注日を指定", class: 'btn btn-outline-dark ml-3'
+
+  = form_with model: @order_collection, url: eatery_order_stocks_bulk_update_path, local: true do |ocf|
+    = ocf.hidden_field :order_date, value: @order_date
+    - if ocf.object.errors.any?
+      = render 'layouts/eatery/error_messages', errors: ocf.object.errors
+
+    %table.table.is-bordered.is-hoverable
+      %thead
+        %tr
+          %th 食材名
+          %th 在庫数
+          %th 未着数
+          %th 最適在庫数
+          %th 発注数
+      %tbody
+        - ocf.object.order_forms.each do |of|
+          = ocf.fields_for 'order_forms[]', of.order_stock do |f|
+            %tr
+              %td= f.object.item.name
+              %td= of.stock_num
+              %td= of.not_arrived_stock_num
+              %td= of.proper_stock_num
+              %td= f.number_field :quantity, class: 'form-control'
+    = ocf.button '保存', type: 'submit', class: 'btn btn-success'

@@ -61,3 +61,4 @@ production:
   database: food_stock_production
   username: food_stock
   password: <%= ENV['food_stock_DATABASE_PASSWORD'] %>
+  socket: /var/run/mysql/mysql.sock

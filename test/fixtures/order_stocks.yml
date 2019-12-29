@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shop: one
+  item: one
+  quantity: 1
+  delivery_date: 2019-05-03 04:30:06
+
+two:
+  shop: two
+  item: two
+  quantity: 1
+  delivery_date: 2019-05-03 04:30:06

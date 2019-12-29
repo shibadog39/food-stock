@@ -1,0 +1,20 @@
+- if f.object.errors.any?
+  = render 'layouts/eatery/error_messages', errors: f.object.errors
+
+.form-group
+  = f.label :supplier_id, '仕入先'
+  = f.collection_select(:supplier_id, current_shop.suppliers, :id, :name,
+                        {}, { class: 'form-control' })
+.form-group
+  = f.label :name, '食材名'
+  = f.text_field :name, class: 'form-control', placeholder: 'キャベツ'
+.form-group
+  = f.label :category, 'カテゴリー'
+  = f.select :category, Item.category.options, {}, { class: 'form-control' }
+.form-group
+  = f.label :lead_time, '発注から到着までの日数'
+  = f.number_field :lead_time, class: 'form-control', placeholder: '2'
+.form-group
+  = f.label :memo, 'メモ'
+  = f.text_field :memo, class: 'form-control', placeholder: 'メモ'
+= f.button '保存', type: 'submit', class: 'btn btn-success'

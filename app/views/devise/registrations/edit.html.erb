@@ -1,0 +1,57 @@
+<div class="title mt-3">店舗情報登録</div>
+<hr>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field form-group">
+    <%= f.label :name, "名前" %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :email, "メールアドレス" %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :tel, "電話番号" %><br />
+    <%= f.text_field :tel, autofocus: true, autocomplete: "tel", class: "form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :address, "住所" %><br />
+    <%= f.text_field :address, autofocus: true, autocomplete: "address", class: "form-control" %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :memo, "詳細" %><br />
+    <%= f.text_area :memo, autofocus: true, autocomplete: "memo", class: "form-control" %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= f.label :password, "パスワード" %> <i>(変更しない場合は空欄にしてください)</i><br />
+    <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> characters minimum</em>
+    <% end %>
+  </div>
+
+  <div class="field form-group">
+    <%= f.label :password_confirmation, "パスワード（確認用）" %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "登録する", class: "btn btn-success" %>
+  </div>
+<% end %>
+
+<div class="mt-3">
+  <%= button_to "アカウントを削除する", registration_path(resource_name), data: { confirm: "登録内容が全て消去されます。本当に削除してもよろしいですか?" }, method: :delete, class: "btn btn-danger" %>
+</div>

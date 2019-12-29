@@ -1,0 +1,33 @@
+<div class="title mt-3">
+  <span>ログイン</span>
+  <span class="float-right"><%= render "devise/shared/links" %></span>
+</div>
+<hr>
+
+<div class="row">
+  <div class="col-sm-6 offset-3">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field form-group">
+        <%= f.label :email, "メールアドレス" %><br />
+        <%= f.email_field :email, autofocus: true, class: "form-control" %>
+      </div>
+
+      <div class="field form-group">
+        <%= f.label :password, "パスワード" %><br />
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="field form-group">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
+
+      <div class="actions text-center">
+        <%= f.submit "ログイン", class: "btn btn-success" %>
+      </div>
+    <% end %>
+
+  </div>
+</div>

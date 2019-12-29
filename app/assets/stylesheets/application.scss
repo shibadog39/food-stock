@@ -10,6 +10,32 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+
+ // Custom bootstrap variables must be set or imported *before* bootstrap.
+ @import "bootstrap";
+ @import "font-awesome-sprockets";
+ @import "font-awesome";
+
+ /* universal */
+
+.title {
+    background-color: #f1f1f2;
+    padding: 14px 16px 16px;
+    font-size: 1rem;
+}
+
+.sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 48px;
+    height: calc(100vh - 48px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.table {
+    margin-top: 16px;
+}
